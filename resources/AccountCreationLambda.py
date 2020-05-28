@@ -131,7 +131,19 @@ def deploy_resources(credentials, template, stackname, stackregion, ServiceCatal
                     {
                         'ParameterKey' : 'ServiceCatalogUserPassword',
                         'ParameterValue' : ServiceCatalogUserPassword
-                    }
+                    },
+                    {
+                        'ParameterKey' : 'VPCIPRange',
+                        'ParameterValue' : VPCIPRange
+                    },
+                    {
+                        'ParameterKey' : 'PrivateSubnets',
+                        'ParameterValue' : PrivateSubnets
+                    },
+                    {
+                        'ParameterKey' : 'PublicSubnets',
+                        'ParameterValue' : PublicSubnets
+                    },
                 ],
                 NotificationARNs=[],
                 Capabilities=[
@@ -281,6 +293,9 @@ def main(event,context):
     ServiceCatalogUserPassword = event['ResourceProperties']['ServiceCatalogUserPassword']
     sourcebucket = event['ResourceProperties']['SourceBucket']
     baselinetemplate = event['ResourceProperties']['BaselineTemplate']
+    VPCIPRange = event['ResourceProperties']['VPCIPRange']
+    PrivateSubnets = event['ResourceProperties']['PrivateSubnets']
+    PublicSubnets = event['ResourceProperties']['PublicSubnets']
     access_to_billing = "DENY"
     scp = None
 

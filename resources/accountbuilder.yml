@@ -21,6 +21,9 @@ Metadata:
           - StackRegion
           - SourceBucket
           - BaselineTemplate
+          - VPCIPRange
+          - PrivateSubnets
+          - PublicSubnets
 
 Parameters:
   MasterLambdaArn:
@@ -62,6 +65,18 @@ Parameters:
     Description: "Baseline template to be deployed in the vended account."
     Type: String
     Default: "Accountbaseline.yml"
+  
+  VPCIPRange:
+    Description: "CIDR Block for the VPC"
+    Type: String
+
+  PrivateSubnets:
+    Description: "Comma-delimited list of two Private Subnet Ranges"
+    Type: CommaDelimitedList
+  
+  PublicSubnets:
+    Description: "Comma-delimited list of two Public Subnet Ranges"
+    Type: CommaDelimitedList
 
 Resources:
 
@@ -79,6 +94,9 @@ Resources:
       ServiceCatalogUserPassword : 'service-catalog-2019'
       SourceBucket : !Ref SourceBucket
       BaselineTemplate: !Ref BaselineTemplate
+      VPCIPRange: !Ref VPCIPRange
+      PrivateSubnets: !Ref PrivateSubnets
+      PublicSubnets: !Ref PublicSubnets
 
 Outputs:
   Message:

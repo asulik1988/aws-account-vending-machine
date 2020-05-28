@@ -13,6 +13,18 @@ Parameters:
     NoEcho: true
     MinLength: 1
     Description: Password for the IAM user for ServiceCatalog in the newly vended account
+  VPCIPRange:
+    Type: String
+    MinLength: 1
+    Description: VPC CIDR Block
+  PrivateSubnets:
+    Type: CommaDelimitedList
+    MinLength: 1
+    Description: Comma-delimited list of two Private Subnet Ranges
+  PublicSubnets:
+    Type: CommaDelimitedList
+    MinLength: 1
+    Description: Comma-delimited list of two Public Subnet Ranges
 
 Resources:
   ServiceCatalogUser:
@@ -130,12 +142,16 @@ Resources:
       SupportEmail: "support@yourcompany.com"
       SupportUrl: "https://www.amazon.com"
       SupportDescription: "Support Description"
+      VPCIPRange: "VPCIPRange"
+      PrivateSubnets: "PrivateSubnets"
+      PublicSubnets: "PublicSubnets"
+
       ProvisioningArtifactParameters:
       -
         Description: "Dec 2019"
         Name: "Dec 2019"
         Info:
-          LoadTemplateFromURL : "https://raw.githubusercontent.com/aws-samples/aws-service-catalog-reference-architectures/master/vpc/sc-vpc-ra.json"
+          LoadTemplateFromURL : "https://raw.githubusercontent.com/asulik1988/aws-service-catalog-reference-architectures/master/vpc/sc-vpc-ra.json"
 
   EMRProduct:
     Type: "AWS::ServiceCatalog::CloudFormationProduct"
